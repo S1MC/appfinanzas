@@ -1,12 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Control Finanzas</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control Finanzas Personal</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Control Finanzas Personal</h1>
-  <p>App funcionando correctamente con diseño aplicado.</p>
+  <header class="header">
+    <h1>Control Finanzas Personal</h1>
+    <p>Presupuesto mensual, deuda, gastos y ahorro.</p>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <h2>1. Ingresos</h2>
+
+      <div class="grid">
+        <label>
+          Sueldo mensual
+          <input type="number" id="sueldo" value="500000" />
+        </label>
+
+        <label>
+          Bono trimestral
+          <input type="number" id="bono" value="250000" />
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" id="recibeBono" />
+          Este mes recibí bono
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Gastos fijos</h2>
+
+      <div class="grid">
+        <label>
+          Tarjeta de crédito / cuota mensual
+          <input type="number" id="tarjeta" value="250000" />
+        </label>
+
+        <label>
+          Combustible
+          <input type="number" id="combustible" value="90000" />
+        </label>
+
+        <label>
+          Cuentas comunes
+          <input type="number" id="cuentas" value="70000" />
+        </label>
+
+        <label>
+          Comida
+          <input type="number" id="comida" value="40000" />
+        </label>
+
+        <label>
+          Ocio / salidas
+          <input type="number" id="ocio" value="30000" />
+        </label>
+
+        <label>
+          Imprevistos
+          <input type="number" id="imprevistos" value="30000" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Deuda</h2>
+
+      <div class="grid">
+        <label>
+          Saldo actual tarjeta
+          <input type="number" id="deudaActual" value="1500000" />
+        </label>
+
+        <label>
+          Abono extra este mes
+          <input type="number" id="abonoExtra" value="0" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. Movimiento adicional</h2>
+
+      <div class="grid">
+        <label>
+          Tipo
+          <select id="tipoMovimiento">
+            <option value="gasto">Gasto</option>
+            <option value="ingreso">Ingreso</option>
+          </select>
+        </label>
+
+        <label>
+          Categoría
+          <input type="text" id="categoriaMovimiento" placeholder="Ej: farmacia, regalo, extra" />
+        </label>
+
+        <label>
+          Monto
+          <input type="number" id="montoMovimiento" placeholder="Ej: 15000" />
+        </label>
+
+        <label>
+          Descripción
+          <input type="text" id="descripcionMovimiento" placeholder="Detalle opcional" />
+        </label>
+      </div>
+
+      <button onclick="agregarMovimiento()">Agregar movimiento</button>
+    </section>
+
+    <section class="acciones">
+      <button onclick="calcular()">Calcular</button>
+      <button onclick="guardarDatos()">Guardar datos</button>
+      <button onclick="exportarCSV()">Exportar CSV</button>
+      <button class="danger" onclick="borrarTodo()">Borrar todo</button>
+    </section>
+
+    <section class="resumen">
+      <div class="box">
+        <span>Ingreso del mes</span>
+        <strong id="resIngreso">$0</strong>
+      </div>
+
+      <div class="box">
+        <span>Gastos fijos</span>
+        <strong id="resGastos">$0</strong>
+      </div>
+
+      <div class="box">
+        <span>Movimientos</span>
+        <strong id="resMovimientos">$0</strong>
+      </div>
+
+      <div class="box principal">
+        <span>Disponible final</span>
+        <strong id="resDisponible">$0</strong>
+      </div>
+
+      <div class="box">
+        <span>Deuda restante estimada</span>
+        <strong id="resDeuda">$0</strong>
+      </div>
+
+      <div class="box">
+        <span>Meses aprox. para salir</span>
+        <strong id="resMeses">0</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5. Movimientos registrados</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Categoría</th>
+            <th>Monto</th>
+            <th>Descripción</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tablaMovimientos"></tbody>
+      </table>
+    </section>
+
+    <section class="nota">
+      <p>
+        Nota: los datos se guardan solo en este navegador mediante almacenamiento local.
+        No subas contraseñas, datos bancarios sensibles ni información privada crítica.
+      </p>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
